@@ -1,9 +1,9 @@
 import "./globals.css";
 
-import { Inter } from "next/font/google";
 import type { Metadata } from "next";
+import { Outfit } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "My Task Board",

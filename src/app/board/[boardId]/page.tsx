@@ -1,5 +1,11 @@
+import { Title } from "./components";
+
 const BoardPage = () => {
-  return <div>board page</div>;
+  return (
+    <div className="max-w-[552px] mt-12">
+      <Title />
+    </div>
+  );
 };
 
 export default BoardPage;
