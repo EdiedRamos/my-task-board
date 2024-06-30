@@ -1,5 +1,7 @@
+import { redirect } from "next/navigation";
+
 const HomePage = () => {
-  return <div>page</div>;
+  redirect("/board/init");
 };
 
 export default HomePage;
