@@ -1,9 +1,10 @@
-import { Title } from "./components";
+import { AddTask, Title } from "./components";
 
 const BoardPage = () => {
   return (
-    <div className="max-w-[552px] mt-12">
+    <div className="w-full sm:w-[552px] mt-12">
       <Title />
+      <AddTask />
     </div>
   );
 };
