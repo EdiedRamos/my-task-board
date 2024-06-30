@@ -22,6 +22,13 @@ const config: Config = {
         "cc-blue": "#3662e3",
         "cc-gray": "#00000033",
       },
+      fontSize: {
+        "cf-50": "12px",
+        "cf-100": "14px",
+        "cf-200": "16px",
+        "cf-300": "20px",
+        "cf-400": "40px",
+      },
     },
   },
   plugins: [],
