@@ -1,4 +1,4 @@
-import { AddTask, TaskGroup, Title } from "./components";
+import { AddTask, TaskGroup, TaskView, Title } from "./components";
 
 const BoardPage = () => {
   return (
@@ -6,6 +6,7 @@ const BoardPage = () => {
       <Title />
       <TaskGroup />
       <AddTask />
+      <TaskView />
     </div>
   );
 };
