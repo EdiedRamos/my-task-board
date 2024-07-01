@@ -1,4 +1,3 @@
-import { Done } from "../assets";
 import type { Task } from "../types";
 import { getStatusBg } from "../utils";
 import { getStatusIcon } from "../utils/icons.utils";
