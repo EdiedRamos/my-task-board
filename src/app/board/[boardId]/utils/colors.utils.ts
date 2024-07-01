@@ -9,5 +9,7 @@ export function getStatusBg(status: Status): string {
       return "bg-cc-yellow";
     case "wontdo":
       return "bg-cc-pink";
+    case "unknown":
+      return "bg-cc-light-gray";
   }
 }

@@ -1,12 +1,7 @@
-import React from "react";
-import type { Status } from "../types";
+import type { Task } from "../types";
 import { TaskPreview } from "./TaskPreview";
 
-const MOCK: {
-  id: string;
-  title: string;
-  status: Status;
-}[] = [
+const MOCK: Task[] = [
   {
     id: "1",
     title: "Task in progress",
@@ -21,6 +16,12 @@ const MOCK: {
     id: "3",
     title: "Task Won't Do",
     status: "wontdo",
+  },
+  {
+    id: "4",
+    title: "Task To Do",
+    status: "unknown",
+    description: "Work on a Challenge on devChallenges.io, learn Typescript.",
   },
 ];
 
