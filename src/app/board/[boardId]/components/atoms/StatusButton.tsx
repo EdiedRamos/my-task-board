@@ -7,7 +7,7 @@ interface Props {
 
 export const StatusButton = ({ icon, text }: Props) => {
   return (
-    <button className="border-2 rounded-xl flex gap-3 items-center flex-wrap p-[3px] font-medium hover:bg-slate-200">
+    <button className="border-2 rounded-xl flex gap-3 items-center flex-wrap p-[3px] font-medium active:scale-105 transition-all hover:bg-slate-200">
       {icon}
       {text}
     </button>
