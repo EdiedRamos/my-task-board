@@ -6,15 +6,18 @@ import {
   Comment,
   Computer,
   Done,
-  DoneRound,
   Dumbbell,
   MugHot,
   Time,
   Trash,
 } from "../assets";
-import { IconButton, Label, SqureIcon, StatusButton } from "./atoms";
-
-import React from "react";
+import {
+  IconButton,
+  Label,
+  SqureIcon,
+  StatusButton,
+  TaskActionButton,
+} from "./atoms";
 
 export const TaskView = () => {
   return (
@@ -80,12 +83,16 @@ export const TaskView = () => {
           </div>
           {/* Control */}
           <div className="flex flex-wrap gap-4 justify-end mt-14">
-            <button className="flex items-center gap-1 px-6 py-2 bg-cc-dark-gray rounded-3xl text-white text-cf-100 font-medium">
-              Delete <Trash />
-            </button>
-            <button className="flex items-center gap-1 px-6 py-2 bg-cc-blue rounded-3xl text-white text-cf-100 font-medium">
-              Save <DoneRound />
-            </button>
+            <TaskActionButton
+              className="bg-cc-dark-gray"
+              icon={<Trash />}
+              text="Delete"
+            />
+            <TaskActionButton
+              className="bg-cc-blue"
+              icon={<Trash />}
+              text="Save"
+            />
           </div>
         </div>
       </div>
