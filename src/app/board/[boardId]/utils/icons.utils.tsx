@@ -1,27 +1,16 @@
 import { Close1, Done, Time } from "../assets";
 
+import { SqureIcon } from "../components/atoms";
 import type { Status } from "../types";
 
 export function getStatusIcon(status: Status): React.ReactNode {
   switch (status) {
     case "completed":
-      return (
-        <div className="bg-cc-green rounded-xl p-3">
-          <Done />
-        </div>
-      );
+      return <SqureIcon icon={<Done />} className="bg-cc-green" />;
     case "progress":
-      return (
-        <div className="bg-cc-orange rounded-xl p-3">
-          <Time />
-        </div>
-      );
+      return <SqureIcon icon={<Time />} className="bg-cc-orange" />;
     case "wontdo":
-      return (
-        <div className="bg-cc-red rounded-xl p-3">
-          <Close1 />
-        </div>
-      );
+      return <SqureIcon icon={<Close1 />} className="bg-cc-red" />;
     case "unknown":
       return <></>;
   }
