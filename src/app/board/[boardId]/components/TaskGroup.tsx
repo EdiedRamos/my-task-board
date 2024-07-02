@@ -25,6 +25,7 @@ const MOCK: Task[] = [
     title: "Task To Do",
     status: "unknown",
     description: "Work on a Challenge on devChallenges.io, learn Typescript.",
+    iconName: "Clock",
   },
 ];
 
