@@ -1,13 +1,19 @@
+"use client";
+
 import type { Task } from "../types";
 import { getStatusBg } from "../utils";
 import { getStatusIcon } from "../utils/icons.utils";
+import { useBoard } from "../hook/useBoard";
 
 interface Props extends Task {}
 
 export const TaskPreview = ({ title, status, description }: Props) => {
+  const boardState = useBoard();
+
   return (
     <div
-      className={`flex justify-between items-start p-4 rounded-xl ${getStatusBg(
+      onClick={boardState.handleTaskViewOpen}
+      className={`flex hover:cursor-pointer active:scale-105 select-none justify-between items-start p-4 rounded-xl transition-all ${getStatusBg(
         status
       )}`}
     >
