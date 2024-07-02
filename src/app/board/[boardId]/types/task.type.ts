@@ -1,3 +1,5 @@
+import { IconsKey } from "../assets";
+
 export type Status = "unknown" | "completed" | "progress" | "wontdo";
 
 export interface Task {
@@ -5,4 +7,5 @@ export interface Task {
   title: string;
   status: Status;
   description?: string;
+  iconName?: IconsKey;
 }

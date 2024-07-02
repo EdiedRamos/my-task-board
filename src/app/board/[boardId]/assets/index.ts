@@ -24,7 +24,9 @@ export const Icons = {
   MugHot,
 };
 
-export const IconsKeys: (keyof typeof Icons)[] = [
+export type IconsKey = keyof typeof Icons;
+
+export const IconsKeys: IconsKey[] = [
   "Computer",
   "Comment",
   "MugHot",

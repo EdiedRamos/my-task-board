@@ -4,7 +4,9 @@ interface Props {
 
 const BoardLayout = ({ children }: Props) => {
   return (
-    <main className="flex justify-center bg-cc-white h-screen">{children}</main>
+    <main className="flex justify-center bg-cc-white min-h-screen">
+      {children}
+    </main>
   );
 };
 
