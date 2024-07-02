@@ -4,6 +4,6 @@ interface Props {
 
 export const IconButton = ({ icon }: Props) => {
   return (
-    <button className="border p-3 rounded-lg bg-cc-light-gray">{icon}</button>
+    <button className="border-2 p-3 rounded-lg bg-cc-white">{icon}</button>
   );
 };

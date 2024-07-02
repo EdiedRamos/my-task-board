@@ -32,7 +32,7 @@ export const TaskView = () => {
             <Label text="Task name">
               <input
                 placeholder="Enter task name"
-                className="px-[14px] py-[10px] rounded-lg border-2"
+                className="px-[14px] py-[10px] rounded-lg border-2 outline-none focus:border-cc-blue"
                 type="text"
                 name="name"
               />
@@ -43,7 +43,7 @@ export const TaskView = () => {
             <Label text="Description">
               <textarea
                 placeholder="Enter a short description"
-                className="h-[150px] resize-none border-2 rounded-lg px-[14px] py-[10px]"
+                className="h-[150px] resize-none border-2 rounded-lg px-[14px] py-[10px] outline-none focus:border-cc-blue"
                 name="description"
               />
             </Label>
