@@ -6,7 +6,7 @@ const BoardPage = () => {
       <Title />
       <TaskGroup />
       <AddTask />
-      {/* <TaskView /> */}
+      <TaskView />
     </div>
   );
 };

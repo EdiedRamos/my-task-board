@@ -2,9 +2,11 @@ export * from "./Add";
 export * from "./Close";
 export * from "./Close1";
 export * from "./Done";
+export * from "./DoneRound";
 export * from "./Edit";
 export * from "./Logo";
 export * from "./Time";
+export * from "./Trash";
 
 export * from "./Book";
 export * from "./Clock";
