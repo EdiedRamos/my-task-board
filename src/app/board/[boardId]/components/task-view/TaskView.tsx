@@ -11,7 +11,7 @@ export const TaskView = () => {
       <div className="bg-cc-white w-full sm:w-[558px] m-3 rounded-lg p-3 flex flex-col">
         <div className="flex justify-between">
           <p className="font-medium text-cf-300">Task deatils</p>
-          <button className="border p-1 rounded-lg">
+          <button className="border p-1 rounded-lg active:scale-105 transition-all hover:bg-slate-100">
             <Close />
           </button>
         </div>
