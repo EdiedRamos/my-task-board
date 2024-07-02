@@ -8,9 +8,18 @@ export * from "./Logo";
 export * from "./Time";
 export * from "./Trash";
 
-export * from "./Book";
-export * from "./Clock";
-export * from "./Comment";
-export * from "./Computer";
-export * from "./Dumbbell";
-export * from "./MugHot";
+import { Book } from "./Book";
+import { Clock } from "./Clock";
+import { Comment } from "./Comment";
+import { Computer } from "./Computer";
+import { Dumbbell } from "./Dumbbell";
+import { MugHot } from "./MugHot";
+
+export const Icons = {
+  Book,
+  Clock,
+  Comment,
+  Computer,
+  Dumbbell,
+  MugHot,
+};

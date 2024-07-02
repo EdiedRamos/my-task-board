@@ -1,16 +1,4 @@
-import {
-  Book,
-  Clock,
-  Close,
-  Close1,
-  Comment,
-  Computer,
-  Done,
-  Dumbbell,
-  MugHot,
-  Time,
-  Trash,
-} from "../assets";
+import { Close, Close1, Done, Time, Trash } from "../assets";
 import {
   IconButton,
   Label,
@@ -18,6 +6,10 @@ import {
   StatusButton,
   TaskActionButton,
 } from "./atoms";
+
+import { Icons } from "../assets";
+
+const { Book, Clock, Comment, Computer, Dumbbell, MugHot } = Icons;
 
 export const TaskView = () => {
   return (
