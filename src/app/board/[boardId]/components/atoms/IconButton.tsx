@@ -4,7 +4,7 @@ interface Props {
 
 export const IconButton = ({ icon }: Props) => {
   return (
-    <button className="p-3 rounded-lg bg-cc-light-gray hover:bg-cc-dark-gray transition-all hover:animate-spin">
+    <button className="p-3 rounded-lg bg-cc-light-gray hover:bg-slate-300 active:scale-105 transition-all">
       {icon}
     </button>
   );
