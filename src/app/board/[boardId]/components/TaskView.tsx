@@ -12,7 +12,7 @@ import {
   Time,
   Trash,
 } from "../assets";
-import { IconButton, Label, SqureIcon } from "./atoms";
+import { IconButton, Label, SqureIcon, StatusButton } from "./atoms";
 
 import React from "react";
 
@@ -64,17 +64,18 @@ export const TaskView = () => {
           <div className="mt-5">
             <Label text="Status" />
             <div className="grid grid-cols-2 gap-4">
-              <button className="border-2 rounded-xl flex gap-3 items-center flex-wrap p-[3px] font-medium">
-                <SqureIcon icon={<Time />} className="bg-cc-orange" /> In
-                Progress
-              </button>
-              <button className="border-2 rounded-xl flex gap-3 items-center flex-wrap p-[3px] font-medium">
-                <SqureIcon icon={<Done />} className="bg-cc-green" /> Completed
-              </button>
-              <button className="border-2 rounded-xl flex gap-3 items-center flex-wrap p-[3px] font-medium">
-                <SqureIcon icon={<Close1 />} className="bg-cc-red" /> Won&apos;t
-                do
-              </button>
+              <StatusButton
+                icon={<SqureIcon icon={<Time />} className="bg-cc-orange" />}
+                text="In Progress"
+              />
+              <StatusButton
+                icon={<SqureIcon icon={<Done />} className="bg-cc-green" />}
+                text="Completed"
+              />
+              <StatusButton
+                icon={<SqureIcon icon={<Close1 />} className="bg-cc-red" />}
+                text="Won't Do"
+              />
             </div>
           </div>
           {/* Control */}
