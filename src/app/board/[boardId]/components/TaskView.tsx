@@ -1,5 +1,14 @@
-import { Close } from "../assets";
-import { Label } from "./atoms";
+import {
+  Book,
+  Clock,
+  Close,
+  Comment,
+  Computer,
+  Dumbbell,
+  MugHot,
+} from "../assets";
+import { IconButton, Label } from "./atoms";
+
 import React from "react";
 
 export const TaskView = () => {
@@ -12,7 +21,7 @@ export const TaskView = () => {
             <Close />
           </button>
         </div>
-        <form>
+        <div>
           {/* Task name */}
           <Label text="Task name">
             <input type="text" name="name" />
@@ -24,12 +33,20 @@ export const TaskView = () => {
           {/* Icons */}
           <div>
             <Label text="Icon" />
+            <div className="flex gap-3 flex-wrap mt-2">
+              <IconButton icon={<Computer className="w-5" />} />
+              <IconButton icon={<Comment className="w-5" />} />
+              <IconButton icon={<MugHot className="w-5" />} />
+              <IconButton icon={<Dumbbell className="w-5" />} />
+              <IconButton icon={<Book className="w-5" />} />
+              <IconButton icon={<Clock className="w-5" />} />
+            </div>
           </div>
           {/* Status */}
           <div>
             <Label text="Status" />
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
