@@ -23,3 +23,12 @@ export const Icons = {
   Dumbbell,
   MugHot,
 };
+
+export const IconsKeys: (keyof typeof Icons)[] = [
+  "Computer",
+  "Comment",
+  "MugHot",
+  "Dumbbell",
+  "Book",
+  "Clock",
+];
