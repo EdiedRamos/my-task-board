@@ -1,5 +1,4 @@
 import { Label } from "../atoms";
-import React from "react";
 
 export const TaskViewName = () => {
   return (

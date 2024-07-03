@@ -9,31 +9,26 @@ import { useBoard } from "../hook/useBoard";
 
 interface Props extends Task {}
 
-export const TaskPreview = ({
-  title,
-  status,
-  description,
-  iconName,
-}: Props) => {
+export const TaskPreview = (task: Props) => {
   const boardState = useBoard();
 
   return (
     <div
-      onClick={boardState.handleTaskViewOpen}
+      onClick={() => boardState.handleSetTask(task)}
       className={`flex  gap-3 hover:cursor-pointer active:scale-105 select-none justify-between items-start p-4 rounded-xl transition-all ${getStatusBg(
-        status
+        task.status
       )}`}
     >
       <div className="flex gap-3 items-start">
-        {iconName && (
-          <IconPreview icon={Icons[iconName]({ className: "w-5 h-5" })} />
+        {task.iconName && (
+          <IconPreview icon={Icons[task.iconName]({ className: "w-5 h-5" })} />
         )}
         <div className="self-center">
-          <p className="font-bold text-cf-300">{title}</p>
-          {description && <p>{description}</p>}
+          <p className="font-bold text-cf-300">{task.title}</p>
+          {task.description && <p>{task.description}</p>}
         </div>
       </div>
-      {getStatusIcon(status)}
+      {getStatusIcon(task.status)}
     </div>
   );
 };
