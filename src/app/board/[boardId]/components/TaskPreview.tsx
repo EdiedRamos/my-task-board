@@ -15,7 +15,7 @@ export const TaskPreview = (task: Props) => {
   return (
     <div
       onClick={() => boardState.handleSetTask(task)}
-      className={`flex  gap-3 hover:cursor-pointer active:scale-105 select-none justify-between items-start p-4 rounded-xl transition-all ${getStatusBg(
+      className={`flex gap-3 hover:scale-95 hover:cursor-pointer select-none justify-between items-start p-4 rounded-xl transition-all ${getStatusBg(
         task.status
       )}`}
     >
