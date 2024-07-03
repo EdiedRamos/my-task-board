@@ -19,7 +19,7 @@ export const TaskViewProvider = ({ children }: Props) => {
   const handleEventName = (event: ChangeEvent<HTMLInputElement>) =>
     setTaskName(event.target.value);
 
-  const handleEventDescription = (event: ChangeEvent<HTMLInputElement>) =>
+  const handleEventDescription = (event: ChangeEvent<HTMLTextAreaElement>) =>
     setTaskDescription(event.target.value);
 
   const handleClickIcon = (icon: IconsKey) => setIconName(icon);

@@ -9,7 +9,7 @@ interface TaskViewContext {
   iconName: IconsKey | null;
   status: Status | null;
   handleEventName: (event: ChangeEvent<HTMLInputElement>) => void;
-  handleEventDescription: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleEventDescription: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   handleClickIcon: (icon: IconsKey) => void;
   handleClickStatus: (status: Status) => void;
   handleSave: () => void;
