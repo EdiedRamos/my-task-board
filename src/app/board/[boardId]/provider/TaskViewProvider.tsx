@@ -1,16 +1,17 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
+import type { Status, Task } from "../types";
 
 import { IconsKey } from "../assets";
-import { Status } from "../types";
 import { taskViewContext } from "../context";
 
 interface Props {
+  baseTask: Task | null;
   children: React.ReactNode;
 }
 
-export const TaskViewProvider = ({ children }: Props) => {
+export const TaskViewProvider = ({ children, baseTask }: Props) => {
   const [taskName, setTaskName] = useState<string>("");
   const [taskDescription, setTaskDescription] = useState<string>("");
   const [iconName, setIconName] = useState<IconsKey | null>(null);
@@ -32,6 +33,18 @@ export const TaskViewProvider = ({ children }: Props) => {
   const handleDelete = () => {
     alert("Delete in progress!");
   };
+
+  const setInitialTask = useCallback((task: Task) => {
+    setTaskName(task.title);
+    setTaskDescription(task.description ?? "");
+    setIconName(task.iconName ?? null);
+    setStatus(task.status);
+  }, []);
+
+  useEffect(() => {
+    if (!baseTask) return;
+    setInitialTask(baseTask);
+  }, [baseTask, setInitialTask]);
 
   const value = {
     taskName,
