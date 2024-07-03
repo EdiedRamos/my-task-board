@@ -9,3 +9,10 @@ export interface Task {
   description?: string;
   iconName?: IconsKey;
 }
+
+export interface AvailableStatus {
+  icon: React.ReactNode;
+  className: string;
+  text: string;
+  status: Status;
+}
