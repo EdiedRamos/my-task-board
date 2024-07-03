@@ -26,8 +26,12 @@ export const TaskViewProvider = ({ children }: Props) => {
 
   const handleClickStatus = (status: Status) => setStatus(status);
 
-  const handleSave = () => {};
-  const handleDelete = () => {};
+  const handleSave = () => {
+    alert("Save in progress!");
+  };
+  const handleDelete = () => {
+    alert("Delete in progress!");
+  };
 
   const value = {
     taskName,
