@@ -41,7 +41,7 @@ export const BoardProvider = ({ children }: Props) => {
   useEffect(() => {
     async function getBoard() {
       try {
-        const response = await fetch("http://localhost:3000/board/api/");
+        const response = await fetch("/board/api/");
         const data = await response.json();
         setTasks(data.data.tasks);
         console.log({ data });
