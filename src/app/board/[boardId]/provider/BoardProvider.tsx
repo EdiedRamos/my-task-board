@@ -4,6 +4,7 @@ import { BoardContext, boardContext } from "../context";
 import { useEffect, useState } from "react";
 
 import type { Task } from "../types";
+import axios from "axios";
 import { toast } from "react-toastify";
 
 interface Props {
@@ -22,8 +23,14 @@ export const BoardProvider = ({ children }: Props) => {
 
   const handleTaskView = (state: boolean) => setShowTaskDetails(state);
 
-  const deleteTask = (taskId: string) => {
-    toast.success("Task deleted");
+  const deleteTask = async (taskId: string) => {
+    try {
+      await axios.delete(`/board/api/?taskId=${taskId}`);
+      setTasks((tasks) => tasks && tasks.filter((task) => task.id !== taskId));
+      toast.success("Task deleted");
+    } catch {
+      toast.error("Delete error");
+    }
   };
 
   useEffect(() => {
