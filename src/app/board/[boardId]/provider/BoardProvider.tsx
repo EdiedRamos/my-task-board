@@ -32,8 +32,15 @@ export const BoardProvider = ({ children }: Props) => {
   }, [currentTask]);
 
   useEffect(() => {
-    // const boardId = getCookie("board_id");
-    // alert(boardId);
+    async function getBoard() {
+      try {
+        const response = await fetch("http://localhost:3000/board/api/");
+        const data = await response.json();
+        setTasks(data.data.tasks);
+        console.log({ data });
+      } catch {}
+    }
+    getBoard();
   }, []);
 
   const value: BoardContext = {
