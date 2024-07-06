@@ -1,7 +1,6 @@
 "use client";
 
 import { BoardContext, boardContext } from "../context";
-import { getCookie, setCookie } from "cookies-next";
 import { useEffect, useState } from "react";
 
 import type { Task } from "../types";
