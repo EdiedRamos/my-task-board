@@ -4,6 +4,7 @@ import { BoardContext, boardContext } from "../context";
 import { useEffect, useState } from "react";
 
 import type { Task } from "../types";
+import { toast } from "react-toastify";
 
 interface Props {
   children: React.ReactNode;
@@ -20,6 +21,10 @@ export const BoardProvider = ({ children }: Props) => {
   const handleSetTask = (task: Task) => setCurrentTask(task);
 
   const handleTaskView = (state: boolean) => setShowTaskDetails(state);
+
+  const deleteTask = (taskId: string) => {
+    toast.success("Task deleted");
+  };
 
   useEffect(() => {
     if (currentTask) {
@@ -49,6 +54,7 @@ export const BoardProvider = ({ children }: Props) => {
     tasks,
     currentTask,
     showTaskDetails,
+    deleteTask,
     handleTaskViewClose,
     handleTaskViewOpen,
     handleTaskView,

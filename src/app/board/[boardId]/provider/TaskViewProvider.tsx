@@ -10,10 +10,16 @@ import { toast } from "react-toastify";
 interface Props {
   baseTask: Task | null;
   handleShow: (state: boolean) => void;
+  handleDeleteTask: (taskId: string) => void;
   children: React.ReactNode;
 }
 
-export const TaskViewProvider = ({ children, baseTask, handleShow }: Props) => {
+export const TaskViewProvider = ({
+  children,
+  baseTask,
+  handleShow,
+  handleDeleteTask,
+}: Props) => {
   const [taskName, setTaskName] = useState<string>("");
   const [taskDescription, setTaskDescription] = useState<string>("");
   const [iconName, setIconName] = useState<IconsKey | null>(null);
@@ -34,7 +40,12 @@ export const TaskViewProvider = ({ children, baseTask, handleShow }: Props) => {
   };
 
   const handleDelete = () => {
-    toast.success("Task deleted");
+    if (!baseTask) {
+      toast.error("No task id found!");
+      return;
+    }
+
+    handleDeleteTask(baseTask.id);
     handleShow(false);
   };
 

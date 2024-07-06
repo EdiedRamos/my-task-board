@@ -10,13 +10,22 @@ import { TaskViewStatus } from "./TaskViewStatus";
 import { useBoard } from "../../hook/useBoard";
 
 export const TaskView = () => {
-  const { currentTask, showTaskDetails, handleTaskViewClose, handleTaskView } =
-    useBoard();
+  const {
+    currentTask,
+    showTaskDetails,
+    handleTaskViewClose,
+    handleTaskView,
+    deleteTask,
+  } = useBoard();
 
   if (!showTaskDetails) return <></>;
 
   return (
-    <TaskViewProvider baseTask={currentTask} handleShow={handleTaskView}>
+    <TaskViewProvider
+      baseTask={currentTask}
+      handleShow={handleTaskView}
+      handleDeleteTask={deleteTask}
+    >
       <div className="fixed flex justify-end bg-cc-gray left-0 top-0 w-full min-h-screen">
         <div className="bg-cc-white w-full sm:w-[558px] m-3 rounded-lg p-3 flex flex-col overflow-y-auto max-h-screen">
           <div className="flex justify-between">
