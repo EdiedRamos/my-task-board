@@ -1,38 +1,22 @@
-import type { Task } from "../types";
-import { TaskPreview } from "./TaskPreview";
+"use client";
 
-const MOCK: Task[] = [
-  {
-    id: "1",
-    title: "Task in progress",
-    status: "progress",
-    iconName: "Book",
-  },
-  {
-    id: "2",
-    title: "Task Completed",
-    status: "completed",
-    iconName: "Computer",
-  },
-  {
-    id: "3",
-    title: "Task Won't Do",
-    status: "wontdo",
-    iconName: "Dumbbell",
-  },
-  {
-    id: "4",
-    title: "Task To Do",
-    status: "unknown",
-    description: "Work on a Challenge on devChallenges.io, learn Typescript.",
-    iconName: "Clock",
-  },
-];
+import { TaskPreview } from "./TaskPreview";
+import { useBoard } from "../hook";
 
 export const TaskGroup = () => {
+  const { tasks } = useBoard();
+
+  if (!tasks || tasks.length === 0) {
+    return (
+      <div>
+        <p>Empty</p>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-10 flex flex-col gap-5">
-      {MOCK.map((data) => (
+      {tasks.map((data) => (
         <TaskPreview key={data.id} {...data} />
       ))}
     </div>
