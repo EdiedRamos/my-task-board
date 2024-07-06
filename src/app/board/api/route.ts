@@ -1,10 +1,19 @@
-import { DEFAULT_TASKS, ENV } from "@/config";
+import { COOKIES_VALUES, DEFAULT_TASKS, ENV } from "@/config";
 
 import { cookies } from "next/headers";
 import { firebaseDB } from "@/libs";
 
 // * Generate a new board
 export async function POST() {
+  const isSetted = cookies().get(COOKIES_VALUES.BOARD_ID);
+
+  if (isSetted !== undefined) {
+    return Response.json(
+      { message: "Board already generated" },
+      { status: 400 }
+    );
+  }
+
   const collectionName = ENV.BOARD_COLLECTION ?? "";
   const boardId = crypto.randomUUID();
   try {
@@ -16,7 +25,7 @@ export async function POST() {
     console.error(err);
   }
 
-  cookies().set("boardId", boardId);
+  cookies().set(COOKIES_VALUES.BOARD_ID, boardId, { httpOnly: true });
 
   return Response.json(
     {
@@ -31,7 +40,7 @@ export async function POST() {
 }
 
 export async function GET() {
-  const boardId = cookies().get("boardId")?.value;
+  const boardId = cookies().get(COOKIES_VALUES.BOARD_ID)?.value;
   const collectionName = ENV.BOARD_COLLECTION ?? "";
 
   if (!boardId) {
@@ -52,26 +61,3 @@ export async function GET() {
     data: data.data(),
   });
 }
-
-// import { firebaseAdmin } from "@/libs";
-// import { cookies } from "next/headers";
-
-// export async function getTasksByBoardId(boardId: string): Promise<string> {
-
-//   // * Verify if the uuid code exits
-//   const cookiesStore = cookies();
-
-//   firebaseAdmin
-//     .getDataBase()
-//     .collection("tasks")
-//     .doc(boardId)
-//     .get()
-//     .then((doc) => {
-//       if (doc.exists) {
-//         console.log(doc.data());
-//       } else {
-//         console.log("doc not found");
-//       }
-//     });
-//   return "First";
-// }

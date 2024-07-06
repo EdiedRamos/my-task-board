@@ -28,3 +28,7 @@ export const DEFAULT_TASKS: Task[] = [
     iconName: "Clock",
   },
 ];
+
+export const COOKIES_VALUES = {
+  BOARD_ID: "boardId",
+};
