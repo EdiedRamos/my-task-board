@@ -28,16 +28,13 @@ async function createBoard() {
 
   cookies().set(COOKIES_VALUES.BOARD_ID, boardId, { httpOnly: true });
 
-  return Response.json(
-    {
-      message: "Board created successfully",
-      data: {
-        boardId,
-        tasks: DEFAULT_TASKS,
-      },
+  return Response.json({
+    message: "Board found successfully",
+    data: {
+      boardId,
+      tasks: DEFAULT_TASKS,
     },
-    { status: 201 }
-  );
+  });
 }
 
 async function getBoard(boardCookie: RequestCookie) {
