@@ -1,10 +1,11 @@
 import { COOKIES_VALUES, DEFAULT_TASKS, ENV } from "@/config";
 
+import { NextRequest } from "next/server";
+import type { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { cookies } from "next/headers";
 import { firebaseDB } from "@/libs";
 
-// * Generate a new board
-export async function POST() {
+async function createBoard() {
   const isSetted = cookies().get(COOKIES_VALUES.BOARD_ID);
 
   if (isSetted !== undefined) {
@@ -39,18 +40,13 @@ export async function POST() {
   );
 }
 
-export async function GET() {
-  const boardId = cookies().get(COOKIES_VALUES.BOARD_ID)?.value;
+async function getBoard(boardCookie: RequestCookie) {
   const collectionName = ENV.BOARD_COLLECTION ?? "";
 
-  if (!boardId) {
-    return Response.json(
-      { message: "boardId value is not defined inside cookies" },
-      { status: 400 }
-    );
-  }
-
-  const data = await firebaseDB.collection(collectionName).doc(boardId).get();
+  const data = await firebaseDB
+    .collection(collectionName)
+    .doc(boardCookie.value)
+    .get();
 
   if (!data.exists) {
     return Response.json({ message: "Board not found" }, { status: 404 });
@@ -60,4 +56,16 @@ export async function GET() {
     message: "Board found successfully",
     data: data.data(),
   });
+}
+
+export async function GET(request: NextRequest) {
+  const boardCookie = request.cookies.get(COOKIES_VALUES.BOARD_ID);
+
+  return boardCookie === undefined ? createBoard() : getBoard(boardCookie);
+}
+
+// * Just for testing goals | Remove board cookie
+export async function PATCH() {
+  cookies().delete(COOKIES_VALUES.BOARD_ID);
+  return Response.json({ message: "boardId cookie deleted" });
 }
