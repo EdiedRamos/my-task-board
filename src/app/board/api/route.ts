@@ -51,7 +51,10 @@ async function getBoard(boardCookie: RequestCookie) {
 
   return Response.json({
     message: "Board found successfully",
-    data: data.data(),
+    data: {
+      boardId: boardCookie.value,
+      ...data.data(),
+    },
   });
 }
 
