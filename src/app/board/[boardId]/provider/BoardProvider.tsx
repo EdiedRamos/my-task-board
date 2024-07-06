@@ -14,12 +14,7 @@ export const BoardProvider = ({ children }: Props) => {
   const [showTaskDetails, setShowTaskDetails] = useState<boolean>(false);
   const [currentTask, setCurrentTask] = useState<Task | null>(null);
 
-  const handleTaskViewClose = () => {
-    setShowTaskDetails(false);
-    if (currentTask) {
-      setCurrentTask(null);
-    }
-  };
+  const handleTaskViewClose = () => setShowTaskDetails(false);
   const handleTaskViewOpen = () => setShowTaskDetails(true);
 
   const handleSetTask = (task: Task) => setCurrentTask(task);
@@ -31,6 +26,12 @@ export const BoardProvider = ({ children }: Props) => {
       setShowTaskDetails(true);
     }
   }, [currentTask]);
+
+  useEffect(() => {
+    if (showTaskDetails && currentTask) {
+      setCurrentTask(null);
+    }
+  }, [showTaskDetails, setCurrentTask, currentTask]);
 
   useEffect(() => {
     async function getBoard() {

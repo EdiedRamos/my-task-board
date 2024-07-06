@@ -8,10 +8,11 @@ import { taskViewContext } from "../context";
 
 interface Props {
   baseTask: Task | null;
+  handleShow: (state: boolean) => void;
   children: React.ReactNode;
 }
 
-export const TaskViewProvider = ({ children, baseTask }: Props) => {
+export const TaskViewProvider = ({ children, baseTask, handleShow }: Props) => {
   const [taskName, setTaskName] = useState<string>("");
   const [taskDescription, setTaskDescription] = useState<string>("");
   const [iconName, setIconName] = useState<IconsKey | null>(null);
@@ -30,8 +31,9 @@ export const TaskViewProvider = ({ children, baseTask }: Props) => {
   const handleSave = () => {
     alert("Save in progress!");
   };
+
   const handleDelete = () => {
-    alert("Delete in progress!");
+    handleShow(false);
   };
 
   const setInitialTask = useCallback((task: Task) => {

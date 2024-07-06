@@ -10,18 +10,19 @@ import { TaskViewStatus } from "./TaskViewStatus";
 import { useBoard } from "../../hook/useBoard";
 
 export const TaskView = () => {
-  const boardState = useBoard();
+  const { currentTask, showTaskDetails, handleTaskViewClose, handleTaskView } =
+    useBoard();
 
-  if (!boardState.showTaskDetails) return <></>;
+  if (!showTaskDetails) return <></>;
 
   return (
-    <TaskViewProvider baseTask={boardState.currentTask}>
+    <TaskViewProvider baseTask={currentTask} handleShow={handleTaskView}>
       <div className="fixed flex justify-end bg-cc-gray left-0 top-0 w-full min-h-screen">
         <div className="bg-cc-white w-full sm:w-[558px] m-3 rounded-lg p-3 flex flex-col overflow-y-auto max-h-screen">
           <div className="flex justify-between">
             <p className="font-medium text-cf-300">Task details</p>
             <button
-              onClick={boardState.handleTaskViewClose}
+              onClick={handleTaskViewClose}
               className="border p-1 rounded-lg active:scale-105 transition-all hover:bg-slate-100"
             >
               <Close />
