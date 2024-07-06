@@ -1,9 +1,10 @@
 import { ChangeEvent, createContext } from "react";
+import type { Status, Task } from "../types";
 
 import type { IconsKey } from "../assets";
-import type { Status } from "../types";
 
 interface TaskViewContext {
+  currentTask: Task | null;
   taskName: string;
   taskDescription: string;
   iconName: IconsKey | null;

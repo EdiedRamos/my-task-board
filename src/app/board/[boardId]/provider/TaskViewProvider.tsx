@@ -49,6 +49,7 @@ export const TaskViewProvider = ({ children, baseTask, handleShow }: Props) => {
   }, [baseTask, setInitialTask]);
 
   const value = {
+    currentTask: baseTask,
     taskName,
     taskDescription,
     iconName,

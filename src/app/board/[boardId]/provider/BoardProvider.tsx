@@ -28,10 +28,10 @@ export const BoardProvider = ({ children }: Props) => {
   }, [currentTask]);
 
   useEffect(() => {
-    if (showTaskDetails && currentTask) {
+    if (!showTaskDetails) {
       setCurrentTask(null);
     }
-  }, [showTaskDetails, setCurrentTask, currentTask]);
+  }, [showTaskDetails, setCurrentTask]);
 
   useEffect(() => {
     async function getBoard() {
