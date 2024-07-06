@@ -5,6 +5,7 @@ import type { Status, Task } from "../types";
 
 import { IconsKey } from "../assets";
 import { taskViewContext } from "../context";
+import { toast } from "react-toastify";
 
 interface Props {
   baseTask: Task | null;
@@ -33,6 +34,7 @@ export const TaskViewProvider = ({ children, baseTask, handleShow }: Props) => {
   };
 
   const handleDelete = () => {
+    toast.success("Task deleted");
     handleShow(false);
   };
 
