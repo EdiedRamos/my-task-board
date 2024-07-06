@@ -47,4 +47,4 @@ class FirebaseAdmin {
   }
 }
 
-export const firebaseAdmin = FirebaseAdmin.getInstance;
+export const firebaseDB = FirebaseAdmin.getInstance.getDataBase();

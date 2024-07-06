@@ -1,6 +1,7 @@
 "use client";
 
 import { BoardContext, boardContext } from "../context";
+import { getCookie, setCookie } from "cookies-next";
 import { useEffect, useState } from "react";
 
 import type { Task } from "../types";
@@ -9,36 +10,8 @@ interface Props {
   children: React.ReactNode;
 }
 
-const DEFAULT_TASKS: Task[] = [
-  {
-    id: "1",
-    title: "Task in progress",
-    status: "progress",
-    iconName: "Book",
-  },
-  {
-    id: "2",
-    title: "Task Completed",
-    status: "completed",
-    iconName: "Computer",
-  },
-  {
-    id: "3",
-    title: "Task Won't Do",
-    status: "wontdo",
-    iconName: "Dumbbell",
-  },
-  {
-    id: "4",
-    title: "Task To Do",
-    status: "unknown",
-    description: "Work on a Challenge on devChallenges.io, learn Typescript.",
-    iconName: "Clock",
-  },
-];
-
 export const BoardProvider = ({ children }: Props) => {
-  const [tasks, setTasks] = useState<Task[] | null>(DEFAULT_TASKS);
+  const [tasks, setTasks] = useState<Task[] | null>(null);
   const [showTaskDetails, setShowTaskDetails] = useState<boolean>(false);
   const [currentTask, setCurrentTask] = useState<Task | null>(null);
 
@@ -57,6 +30,11 @@ export const BoardProvider = ({ children }: Props) => {
       setShowTaskDetails(true);
     }
   }, [currentTask]);
+
+  useEffect(() => {
+    // const boardId = getCookie("board_id");
+    // alert(boardId);
+  }, []);
 
   const value: BoardContext = {
     tasks,
