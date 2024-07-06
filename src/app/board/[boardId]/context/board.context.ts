@@ -5,6 +5,7 @@ export interface BoardContext {
   tasks: Task[] | null;
   currentTask: Task | null;
   showTaskDetails: boolean;
+  handleTaskView: (state: boolean) => void;
   handleTaskViewClose: () => void;
   handleTaskViewOpen: () => void;
   handleSetTask: (task: Task) => void;

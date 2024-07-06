@@ -24,6 +24,8 @@ export const BoardProvider = ({ children }: Props) => {
 
   const handleSetTask = (task: Task) => setCurrentTask(task);
 
+  const handleTaskView = (state: boolean) => setShowTaskDetails(state);
+
   useEffect(() => {
     if (currentTask) {
       setShowTaskDetails(true);
@@ -48,6 +50,7 @@ export const BoardProvider = ({ children }: Props) => {
     showTaskDetails,
     handleTaskViewClose,
     handleTaskViewOpen,
+    handleTaskView,
     handleSetTask,
   };
 
