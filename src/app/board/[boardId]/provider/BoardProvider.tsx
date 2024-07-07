@@ -28,13 +28,20 @@ export const BoardProvider = ({ children }: Props) => {
       await axios.delete(`/board/api/?taskId=${taskId}`);
       setTasks((tasks) => tasks && tasks.filter((task) => task.id !== taskId));
       toast.success("Task deleted");
-    } catch {
+    } catch (error) {
+      console.log(error);
       toast.error("Delete error");
     }
   };
 
   const createTask = async (task: Task) => {
-    toast.success("create method in progress");
+    try {
+      await axios.post("/board/api", { ...task });
+      setTasks((prev) => [...(prev ?? []), task]);
+      toast.success("Task created");
+    } catch {
+      toast.error("Create error");
+    }
   };
 
   useEffect(() => {

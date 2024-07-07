@@ -51,6 +51,7 @@ export const TaskViewProvider = ({
         status: status!,
       };
       handleCreateTask(newTask);
+      handleShow(false);
     } catch (error) {
       if (!(error instanceof Error)) {
         toast.error("Something went wrong");
