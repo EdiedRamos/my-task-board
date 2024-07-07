@@ -2,6 +2,7 @@ import { COOKIES_VALUES, DEFAULT_TASKS, ENV } from "@/config";
 
 import { NextRequest } from "next/server";
 import type { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
+import { TaskSchema } from "../[boardId]/types/task.validation";
 import { cookies } from "next/headers";
 import { firebaseDB } from "@/libs";
 
@@ -62,6 +63,58 @@ export async function GET(request: NextRequest) {
   const boardCookie = request.cookies.get(COOKIES_VALUES.BOARD_ID);
 
   return boardCookie === undefined ? createBoard() : getBoard(boardCookie);
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+
+    const validation = TaskSchema.safeParse(body);
+
+    if (!validation.success) {
+      return Response.json(
+        { message: "Invalid data", error: validation.error.errors },
+        { status: 400 }
+      );
+    }
+
+    const boardCookie = request.cookies.get(COOKIES_VALUES.BOARD_ID);
+
+    if (!boardCookie)
+      return Response.json({
+        message: `${COOKIES_VALUES.BOARD_ID} value is not defined in cookies`,
+      });
+
+    const documentRef = firebaseDB
+      .collection(ENV.BOARD_COLLECTION)
+      .doc(boardCookie.value);
+
+    const document = await documentRef.get();
+
+    if (!document.exists)
+      return Response.json({ message: "Board not found" }, { status: 400 });
+
+    const tasks = document.data();
+
+    if (Array.isArray(tasks?.tasks)) {
+      // * make sure the task has a not used uuid
+      if (tasks.tasks.some((task) => task.id === body.id)) {
+        return Response.json({ message: "Duplicate task id" }, { status: 400 });
+      }
+
+      tasks.tasks.push(body);
+      await documentRef.update(tasks);
+    }
+
+    return Response.json({ message: "Task created successfully" });
+  } catch (error) {
+    let message = "Not error provided";
+    if (error instanceof Error) message = error.message;
+    return Response.json(
+      { message: "Something went wrong", error: message },
+      { status: 400 }
+    );
+  }
 }
 
 export async function DELETE(request: NextRequest) {
