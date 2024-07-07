@@ -33,6 +33,10 @@ export const BoardProvider = ({ children }: Props) => {
     }
   };
 
+  const createTask = async (task: Task) => {
+    toast.success("create method in progress");
+  };
+
   useEffect(() => {
     if (currentTask) {
       setShowTaskDetails(true);
@@ -61,6 +65,7 @@ export const BoardProvider = ({ children }: Props) => {
     tasks,
     currentTask,
     showTaskDetails,
+    createTask,
     deleteTask,
     handleTaskViewClose,
     handleTaskViewOpen,

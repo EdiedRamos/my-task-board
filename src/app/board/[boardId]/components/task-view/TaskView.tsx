@@ -15,6 +15,7 @@ export const TaskView = () => {
     showTaskDetails,
     handleTaskViewClose,
     handleTaskView,
+    createTask,
     deleteTask,
   } = useBoard();
 
@@ -24,6 +25,7 @@ export const TaskView = () => {
     <TaskViewProvider
       baseTask={currentTask}
       handleShow={handleTaskView}
+      handleCreateTask={createTask}
       handleDeleteTask={deleteTask}
     >
       <div className="fixed flex justify-end bg-cc-gray left-0 top-0 w-full min-h-screen">

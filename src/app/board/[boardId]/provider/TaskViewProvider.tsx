@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 interface Props {
   baseTask: Task | null;
   handleShow: (state: boolean) => void;
+  handleCreateTask: (task: Task) => void;
   handleDeleteTask: (taskId: string) => void;
   children: React.ReactNode;
 }
@@ -18,12 +19,18 @@ export const TaskViewProvider = ({
   children,
   baseTask,
   handleShow,
+  handleCreateTask,
   handleDeleteTask,
 }: Props) => {
   const [taskName, setTaskName] = useState<string>("");
   const [taskDescription, setTaskDescription] = useState<string>("");
   const [iconName, setIconName] = useState<IconsKey | null>(null);
   const [status, setStatus] = useState<Status | null>(null);
+
+  const validateTask = (): void => {
+    if (taskName.trim().length === 0) throw new Error("Task name is required");
+    if (!status) throw new Error("Status is required");
+  };
 
   const handleEventName = (event: ChangeEvent<HTMLInputElement>) =>
     setTaskName(event.target.value);
@@ -36,7 +43,21 @@ export const TaskViewProvider = ({
   const handleClickStatus = (status: Status) => setStatus(status);
 
   const handleSave = () => {
-    alert("Save in progress!");
+    try {
+      validateTask();
+      const newTask: Task = {
+        id: crypto.randomUUID(),
+        title: taskName,
+        status: status!,
+      };
+      handleCreateTask(newTask);
+    } catch (error) {
+      if (!(error instanceof Error)) {
+        toast.error("Something went wrong");
+        return;
+      }
+      toast.error(error.message);
+    }
   };
 
   const handleDelete = () => {
