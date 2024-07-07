@@ -20,7 +20,7 @@ export const TaskViewControl = () => {
         onClick={handleSave}
         className="bg-cc-blue"
         icon={<DoneRound />}
-        text="Save"
+        text={currentTask ? "Update" : "Save"}
       />
     </div>
   );
