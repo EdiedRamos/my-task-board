@@ -1,6 +1,6 @@
-import React from "react";
+import { DoneRound, Trash } from "../../assets";
+
 import { TaskActionButton } from "../atoms";
-import { Trash } from "../../assets";
 import { useTaskView } from "../../hook";
 
 export const TaskViewControl = () => {
@@ -19,7 +19,7 @@ export const TaskViewControl = () => {
       <TaskActionButton
         onClick={handleSave}
         className="bg-cc-blue"
-        icon={<Trash />}
+        icon={<DoneRound />}
         text="Save"
       />
     </div>
