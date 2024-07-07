@@ -38,7 +38,7 @@ export const TaskViewStatus = () => {
             onClick={() => viewState.handleClickStatus(status)}
             key={text}
             icon={<SqureIcon icon={icon} className={className} />}
-            text="In Progress"
+            text={text}
           />
         ))}
       </div>
