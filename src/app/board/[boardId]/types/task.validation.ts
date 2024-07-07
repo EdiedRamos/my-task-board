@@ -10,13 +10,15 @@ export const StatusSchema = z.enum([
   "wontdo",
 ]);
 
-export const TaskSchema = z.object({
-  id: z.string().uuid(),
-  title: z.string().min(1, "Task name is required"),
-  status: StatusSchema,
-  description: z.string().optional(),
-  iconName: IconsSchema.optional(),
-});
+export const TaskSchema = z
+  .object({
+    id: z.string().uuid(),
+    title: z.string().min(1, "Task name is required"),
+    status: StatusSchema,
+    description: z.string().optional(),
+    iconName: IconsSchema.optional(),
+  })
+  .strict();
 
 // type Task = z.infer<typeof TaskSchema>;
 
