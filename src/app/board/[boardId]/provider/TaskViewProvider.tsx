@@ -11,6 +11,7 @@ interface Props {
   baseTask: Task | null;
   handleShow: (state: boolean) => void;
   handleCreateTask: (task: Task) => void;
+  handleUpdateTask: (task: Task) => void;
   handleDeleteTask: (taskId: string) => void;
   children: React.ReactNode;
 }
@@ -20,6 +21,7 @@ export const TaskViewProvider = ({
   baseTask,
   handleShow,
   handleCreateTask,
+  handleUpdateTask,
   handleDeleteTask,
 }: Props) => {
   const [taskName, setTaskName] = useState<string>("");
@@ -65,7 +67,27 @@ export const TaskViewProvider = ({
   };
 
   const handleUpdate = () => {
-    toast.warn("UPDATE in progress");
+    if (!baseTask) return;
+
+    try {
+      validateTask();
+      const newTask: Task = {
+        id: baseTask.id,
+        title: taskName,
+        status: status!,
+      };
+      if (taskDescription.trim().length) newTask.description = taskDescription;
+      if (iconName) newTask.iconName = iconName;
+
+      handleUpdateTask(newTask);
+      handleShow(false);
+    } catch (error) {
+      if (!(error instanceof Error)) {
+        toast.error("Something went wrong");
+        return;
+      }
+      toast.error(error.message);
+    }
   };
 
   const handleDelete = () => {

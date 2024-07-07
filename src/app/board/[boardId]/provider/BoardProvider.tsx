@@ -44,7 +44,19 @@ export const BoardProvider = ({ children }: Props) => {
     }
   };
 
-  const updateTask = async (task: Task) => {};
+  const updateTask = async (task: Task) => {
+    try {
+      await axios.put("/board/api", { ...task });
+      setTasks((prev) =>
+        (prev ?? []).map((currentTask) =>
+          currentTask.id === task.id ? task : currentTask
+        )
+      );
+      toast.success("Task updated");
+    } catch {
+      toast.error("Create error");
+    }
+  };
 
   useEffect(() => {
     if (currentTask) {
