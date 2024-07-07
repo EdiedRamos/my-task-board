@@ -61,6 +61,10 @@ export const TaskViewProvider = ({
     }
   };
 
+  const handleUpdate = () => {
+    toast.warn("UPDATE in progress");
+  };
+
   const handleDelete = () => {
     if (!baseTask) {
       toast.error("No task id found!");
@@ -94,6 +98,7 @@ export const TaskViewProvider = ({
     handleClickIcon,
     handleClickStatus,
     handleSave,
+    handleUpdate,
     handleDelete,
   };
 

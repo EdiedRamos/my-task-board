@@ -14,6 +14,7 @@ interface TaskViewContext {
   handleClickIcon: (icon: IconsKey) => void;
   handleClickStatus: (status: Status) => void;
   handleSave: () => void;
+  handleUpdate: () => void;
   handleDelete: () => void;
 }
 

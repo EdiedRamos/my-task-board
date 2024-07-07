@@ -44,6 +44,8 @@ export const BoardProvider = ({ children }: Props) => {
     }
   };
 
+  const updateTask = async (task: Task) => {};
+
   useEffect(() => {
     if (currentTask) {
       setShowTaskDetails(true);
@@ -73,6 +75,7 @@ export const BoardProvider = ({ children }: Props) => {
     currentTask,
     showTaskDetails,
     createTask,
+    updateTask,
     deleteTask,
     handleTaskViewClose,
     handleTaskViewOpen,

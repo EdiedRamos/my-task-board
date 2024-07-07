@@ -4,7 +4,7 @@ import { TaskActionButton } from "../atoms";
 import { useTaskView } from "../../hook";
 
 export const TaskViewControl = () => {
-  const { handleDelete, handleSave, currentTask } = useTaskView();
+  const { handleDelete, handleSave, handleUpdate, currentTask } = useTaskView();
 
   return (
     <div className="flex flex-wrap gap-4 justify-end mt-14">
@@ -17,7 +17,7 @@ export const TaskViewControl = () => {
         />
       )}
       <TaskActionButton
-        onClick={handleSave}
+        onClick={currentTask ? handleUpdate : handleSave}
         className="bg-cc-blue"
         icon={<DoneRound />}
         text={currentTask ? "Update" : "Save"}
