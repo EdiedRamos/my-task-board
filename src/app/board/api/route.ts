@@ -117,6 +117,61 @@ export async function POST(request: NextRequest) {
   }
 }
 
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+
+    const validation = TaskSchema.safeParse(body);
+
+    if (!validation.success) {
+      return Response.json(
+        { message: "Invalid data", error: validation.error.errors },
+        { status: 400 }
+      );
+    }
+
+    const boardCookie = request.cookies.get(COOKIES_VALUES.BOARD_ID);
+
+    if (!boardCookie)
+      return Response.json({
+        message: `${COOKIES_VALUES.BOARD_ID} value is not defined in cookies`,
+      });
+
+    const documentRef = firebaseDB
+      .collection(ENV.BOARD_COLLECTION)
+      .doc(boardCookie.value);
+
+    const document = await documentRef.get();
+
+    if (!document.exists)
+      return Response.json({ message: "Board not found" }, { status: 400 });
+
+    const tasks = document.data();
+
+    if (Array.isArray(tasks?.tasks)) {
+      const taskTargetIndex = tasks.tasks.findIndex(
+        (task) => task.id === body.id
+      );
+
+      if (!~taskTargetIndex)
+        return Response.json({ message: "Not task found" }, { status: 404 });
+
+      tasks.tasks[taskTargetIndex] = body;
+
+      await documentRef.update(tasks);
+    }
+
+    return Response.json({ message: "Task updated successfully" });
+  } catch (error) {
+    let message = "Not error provided";
+    if (error instanceof Error) message = error.message;
+    return Response.json(
+      { message: "Something went wrong", error: message },
+      { status: 400 }
+    );
+  }
+}
+
 export async function DELETE(request: NextRequest) {
   try {
     const boardCookie = request.cookies.get(COOKIES_VALUES.BOARD_ID);
