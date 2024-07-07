@@ -50,6 +50,9 @@ export const TaskViewProvider = ({
         title: taskName,
         status: status!,
       };
+      if (taskDescription.trim().length) newTask.description = taskDescription;
+      if (iconName) newTask.iconName = iconName;
+
       handleCreateTask(newTask);
       handleShow(false);
     } catch (error) {
