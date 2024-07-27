@@ -8,7 +8,7 @@ export const TaskGroup = () => {
 
   if (!tasks || tasks.length === 0) {
     return (
-      <div>
+      <div className="bg-red-400 h-10 rounded-md flex justify-center items-center font-medium mt-5">
         <p>Empty</p>
       </div>
     );
